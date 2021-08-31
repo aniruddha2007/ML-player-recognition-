@@ -1,0 +1,12 @@
+#
+###### text-requirments.txt ###### 
+#
+###### Requirements without Version Specifiers ######
+numpy
+matplotlib
+scikit-learn
+pyautogui
+#
+###### Requirements with Version Specifiers ######
+tensorflow >= 2.6
+#
