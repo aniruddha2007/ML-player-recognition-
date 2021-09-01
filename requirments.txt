@@ -4,7 +4,7 @@
 ###### Requirements without Version Specifiers ######
 numpy
 matplotlib
-scikit-learn
+
 pyautogui
 #
 ###### Requirements with Version Specifiers ######
