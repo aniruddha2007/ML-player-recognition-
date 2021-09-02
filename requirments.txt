@@ -15,3 +15,14 @@ tensorflow >= 2.6
 #
 !git clone https://github.com/rwightman/posenet-python
 #
+
+
+
+cmake -DCMAKE_BUILD_TYPE=Release \
+-DPYTHON3_EXECUTABLE=`which python` \
+-DPYTHON3_NUMPY_INCLUDE_DIR=~/lib/python3.9/site-packages/numpy/core/include \
+-DPYTHON3_INCLUDE_DIR=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Headers \
+-DBUILD_opencv_python2=OFF \
+-DBUILD_opencv_python3=ON \
+-DCMAKE_INSTALL_PREFIX=~/tensorflow_macos_venv \
+<your OpenCV source directory>
