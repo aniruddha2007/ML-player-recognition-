@@ -71,7 +71,6 @@ def _keypoints_and_edges_for_display(keypoints_with_scores,
     width: width of the image in pixels.
     keypoint_threshold: minimum confidence score for a keypoint to be
       visualized.
-
   Returns:
     A (keypoints_xy, edges_xy, edge_colors) containing:
       * the coordinates of all keypoints of all detected entities;
