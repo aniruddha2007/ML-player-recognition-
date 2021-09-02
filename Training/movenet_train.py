@@ -4,7 +4,7 @@ from tensorflow_docs.vis import embed
 import numpy as np
 import cv2
 import wget
-import time
+
 
 from matplotlib import pyplot as plt
 from matplotlib.collections import LineCollection
@@ -186,8 +186,9 @@ def draw_prediction_on_image(
 
 def to_gif(images, fps):
   """Converts image sequence (4D numpy array) to gif."""
-  imageio.get_writer('./test.mp4', format='FFMPEG', mode='I', fps=fps, codec='h254_vaapi_device')
-  #imageio.mimsave('./test.avi', images, fps=fps)
+  imageio.mimwrite('./test.mp4',images, fps=fps, macro_block_size=1)
+  imageio.mimsave('./test.gif', images, fps=fps)
+  #return embed.embed_file('./test.gif')
   return embed.embed_file('./test.mp4')
 
 def progress(value, max=100):
@@ -201,7 +202,7 @@ def progress(value, max=100):
       </progress>
   """.format(value=value, max=max))
   
-model_name = "movenet_lightning"
+model_name = "movenet_thunder"
 if "tflite" in model_name:
   if "movenet_lightning_f16" in model_name:
     wget.download('https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/tflite/float16/4?lite-format=tflite')
@@ -280,7 +281,7 @@ else:
     # Output is a [1, 1, 17, 3] tensor.
     keypoint_with_scores = outputs['output_0'].numpy()
     return keypoint_with_scores
-"""
+
 #loading the image
 image_path = '/Users/aniruddhapandit/Desktop/Testing/GITHUB/ML-player-recognition-/Training/sample.jpeg'
 image = tf.io.read_file(image_path)
@@ -302,9 +303,9 @@ output_overlay = draw_prediction_on_image(
 
 plt.figure(figsize=(5, 5))
 plt.imshow(output_overlay)
-time.sleep(5)
+#imageio.mimwrite('./test.jpeg',format="I")
 _ = plt.axis('off')
-"""
+
 #@title Cropping Algorithm
 
 # Confidence score to determine whether a keypoint prediction is reliable.
@@ -476,7 +477,7 @@ def run_inference(movenet, image, crop_region, crop_size):
         crop_region['width'] * image_width *
         keypoints_with_scores[0, 0, idx, 1]) / image_width
   return keypoints_with_scores
-
+"""
 # Load the input image.
 image_path = '/Users/aniruddhapandit/Desktop/Testing/GITHUB/ML-player-recognition-/Training/dance_input.gif'
 image = tf.io.read_file(image_path)
@@ -503,3 +504,4 @@ for frame_idx in range(num_frames):
 # Prepare gif visualization.
 output = np.stack(output_images, axis=0)
 to_gif(output, fps=15)
+"""
