@@ -1,4 +1,5 @@
 import tensorflow as tf
+import tensorflow_io as tfio
 import tensorflow_hub as hub
 from tensorflow_docs.vis import embed
 import numpy as np
@@ -282,6 +283,7 @@ else:
     keypoint_with_scores = outputs['output_0'].numpy()
     return keypoint_with_scores
 
+"""
 #loading the image
 image_path = '/Users/aniruddhapandit/Desktop/Testing/GITHUB/ML-player-recognition-/Training/sample.jpeg'
 image = tf.io.read_file(image_path)
@@ -305,7 +307,7 @@ plt.figure(figsize=(5, 5))
 plt.imshow(output_overlay)
 #imageio.mimwrite('./test.jpeg',format="I")
 _ = plt.axis('off')
-
+"""
 #@title Cropping Algorithm
 
 # Confidence score to determine whether a keypoint prediction is reliable.
@@ -477,7 +479,7 @@ def run_inference(movenet, image, crop_region, crop_size):
         crop_region['width'] * image_width *
         keypoints_with_scores[0, 0, idx, 1]) / image_width
   return keypoints_with_scores
-"""
+
 # Load the input image.
 image_path = '/Users/aniruddhapandit/Desktop/Testing/GITHUB/ML-player-recognition-/Training/dance_input.gif'
 image = tf.io.read_file(image_path)
@@ -504,4 +506,3 @@ for frame_idx in range(num_frames):
 # Prepare gif visualization.
 output = np.stack(output_images, axis=0)
 to_gif(output, fps=15)
-"""
